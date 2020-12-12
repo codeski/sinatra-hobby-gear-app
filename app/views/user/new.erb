@@ -1,8 +1,9 @@
 <h1>Sign Up</h1>
+<h3><%= @errors %></h3>
 <form action="/signup" method="post">
-    <h3>Name:</h3><input type="text" name="name" placeholder="Name" required></input>
-    <h3>Email:</h3><input type="email" name="email" placeholder="Email" required></input>
-    <h3>Password:</h3><input type="password" name="password" placeholder="Password" required></input><br>
+    <h3>Name:</h3><input type="text" name="name" placeholder="Name"></input>
+    <h3>Email:</h3><input type="email" name="email" placeholder="Email"></input>
+    <h3>Password:</h3><input type="password" name="password" placeholder="Password"></input><br>
     <br>
     <input type="submit" value="Sign Up">
 </form>
