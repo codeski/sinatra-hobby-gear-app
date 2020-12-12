@@ -6,6 +6,6 @@ end
 
 use Rack::MethodOverride
 
-use HobbyController
-use GearController
+# use HobbyController
+# use GearController
 run ApplicationController
