@@ -6,6 +6,7 @@ end
 
 use Rack::MethodOverride
 
-# use HobbyController
-# use GearController
+use UsersController
+use HobbiesController
+use ItemsController
 run ApplicationController

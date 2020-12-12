@@ -1,7 +1,7 @@
-class HobbyController < Sinatra::Base
+class HobbiesController < ApplicationController
   
     get "/hobby" do
-   
+        # erb :"hobby/index"
     end
 
     get "/hobby/:id" do
@@ -20,11 +20,11 @@ class HobbyController < Sinatra::Base
 
     end
 
-    patch "/hobby/:id"
+    patch "/hobby/:id" do
 
     end
 
-    delete "/hobby/:id"
+    delete "/hobby/:id" do
 
     end
   end
