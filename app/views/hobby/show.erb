@@ -1,0 +1,4 @@
+<h1><%= @hobby.name %></h1>
+<ul><% @hobby.items.each do |item| %>
+    <li><%= item.name, item.year, item.company %></li>
+<% end %></ul>

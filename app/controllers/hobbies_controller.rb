@@ -1,30 +1,46 @@
 class HobbiesController < ApplicationController
   
-    get "/hobby" do
-        # erb :"hobby/index"
+    get "/hobbies" do
+        @hobbies = Hobby.all
+        erb :"hobby/index"
     end
 
-    get "/hobby/:id" do
+    # get "/hobbies/new" do
 
-    end
-  
-    get "/hobby/new" do
+    # end
 
-    end
+    # post "/hobbies" do
+    #     hobby
+    # end
 
-    post "/hobby" do
-
-    end
-
-    get "/hobby/:id/edit" do
-
-    end
-
-    patch "/hobby/:id" do
-
+    get "/hobbies/:id" do
+        @hobby = Hobby.find_by(id: params[:id])
+        if @hobby
+            erb :'hobby/show'
+        else
+            redirect "/hobbies"
+        end
     end
 
-    delete "/hobby/:id" do
+    # get "/hobbies/:id/edit" do
+    #     @hobby = Hobby.find_by(id: params[:id])
+    #     if @hobby.user == current_user
+    #         erb :'/hobbies/edit'
+    #     else
+    #         redirect '/hobbies'
+    #     end
+    # end
 
-    end
-  end
+    # patch "/hobbies/:id" do
+    #     @hobby = Hobby.find_by(id: params[:id])
+    #     @hobby.update(params)
+    #     redirect "/hobbies/#{@hobby.id}"
+    # end
+
+    # delete "/hobbies/:id" do
+    #     @hobby = Hobby.find_by(id: params[:id])
+    #     @hobby.delete
+    #     redirect "/hobbies/#{@hobby.id}
+    # end
+
+end
