@@ -13,7 +13,8 @@
     <form action="/items" method="post">
         <input type="text" name="name" placeholder="Name"></input>
         <input type="text" name="year" placeholder="Year"></input>
-        <input type="text" name="name" placeholder="Company"></input>
+        <input type="text" name="company" placeholder="Company"></input>
+        <input type="hidden" name="hobby_id" value="<%= @hobby.id %>"></input>
         <input type="submit" value="Create Item"></input>
     </form>
     <br>

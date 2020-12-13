@@ -10,7 +10,7 @@ class HobbiesController < ApplicationController
     end
 
     post "/hobbies" do
-        # binding.pry
+        
         @hobby = Hobby.create(params)
         @hobby.user_id = session[:user_id]
         @hobby.save
