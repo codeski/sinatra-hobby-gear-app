@@ -5,13 +5,16 @@ class HobbiesController < ApplicationController
         erb :"hobby/index"
     end
 
-    # get "/hobbies/new" do
+    get "/hobbies/new" do
+        erb :"hobby/new"
+    end
 
-    # end
-
-    # post "/hobbies" do
-    #     hobby
-    # end
+    post "/hobbies" do
+        @hobby = Hobby.new(params)
+        @hobby.user_id = session[user:id]
+        @hobby.save
+        erb :"hobby/show"
+    end
 
     get "/hobbies/:id" do
         @hobby = Hobby.find_by(id: params[:id])
