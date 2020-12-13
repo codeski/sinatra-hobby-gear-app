@@ -1,4 +1,4 @@
 <h1>Hobbies</h1>
 <ul><% @hobbies.each do |hobby| %>
-    <h3><li><a href='/hobby/show'><%= hobby.name %></a></li></h3>
+    <h3><li><a href='/hobbies/<%= hobby.id %>'><%= hobby.name %></li></h3>
 <% end %></ul>

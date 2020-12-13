@@ -10,9 +10,11 @@ class HobbiesController < ApplicationController
     end
 
     post "/hobbies" do
-        @hobby = Hobby.new(params)
-        @hobby.user_id = session[user:id]
+        # binding.pry
+        @hobby = Hobby.create(params)
+        @hobby.user_id = session[:user_id]
         @hobby.save
+        
         erb :"hobby/show"
     end
 
@@ -25,14 +27,14 @@ class HobbiesController < ApplicationController
         end
     end
 
-    # get "/hobbies/:id/edit" do
-    #     @hobby = Hobby.find_by(id: params[:id])
-    #     if @hobby.user == current_user
-    #         erb :'/hobbies/edit'
-    #     else
-    #         redirect '/hobbies'
-    #     end
-    # end
+    get "/hobbies/:id/edit" do
+        @hobby = Hobby.find_by(id: params[:id])
+        if @hobby.user == current_user
+            erb :'/hobbies/edit'
+        else
+            redirect '/hobbies'
+        end
+    end
 
     # patch "/hobbies/:id" do
     #     @hobby = Hobby.find_by(id: params[:id])
