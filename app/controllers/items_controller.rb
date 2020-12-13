@@ -32,8 +32,11 @@ class ItemsController < ApplicationController
     end
 
     delete "/items/:id" do
-        
+        @item = Item.find_by(id: params[:id])
+        @hobby = Hobby.find_by(id: @item.hobby_id)
+        @item.delete
 
+        erb :'hobby/show'
     end
   
   end

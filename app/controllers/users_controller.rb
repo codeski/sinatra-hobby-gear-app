@@ -11,7 +11,7 @@ class UsersController < ApplicationController
             redirect "/hobbies" 
         else
             # binding.pry 
-            @errors = user.errors.full_messages.join(" - ")
+            @errors = user.errors.full_messages
             erb :"user/new"
         end
     end
