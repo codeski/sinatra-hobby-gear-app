@@ -2,7 +2,7 @@
 <h2><%= @hobby.name + " - " + @hobby.season %></h2>
 <% if @hobby.items.size > 0 %>
     <ul><% @hobby.items.each do |item| %>
-            <li>Item: <%= item.name %>, Year: <%= item.year %>, Company: <%= item.company %></a>, 
+            <li>Item: <%= item.name %>, Year: <%= item.year %>, Company: <%= item.company %></a>
             <% if logged_in? && @hobby.user == current_user %>
                 <a href="/items/<%= item.id %>/edit">Edit Item</a> <a href="/items/<%= item.id %>/delete">Delete Item</a></li><br>
             <% end %>
@@ -17,8 +17,12 @@
         <input type="submit" value="Create Item"></input>
     </form>
     <br>
-    <a href="/hobbies/delete">Delete Hobby</a>
-<% end %><br>
+    <a href="/hobbies/<%= @hobby.id %>/edit">Edit Hobby</a><br>
+    <form method="post" action="/hobbies/<%= @hobby.id %>">
+        <input type="hidden" value="delete" name="_method"></input>
+        <input type="submit" value="Delete Hobby"></input>
+    </form>
+<% end %><br><br>
 <a href="/hobbies">Back to all hobbies</a>
 <br><br>
 <a href="/logout">Log Out</a>

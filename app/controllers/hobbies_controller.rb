@@ -30,21 +30,24 @@ class HobbiesController < ApplicationController
     get "/hobbies/:id/edit" do
         @hobby = Hobby.find_by(id: params[:id])
         if @hobby.user == current_user
-            erb :'/hobbies/edit'
+            erb :'/hobby/edit'
         else
             redirect '/hobbies'
         end
     end
 
-    # patch "/hobbies/:id" do
-    #     @hobby = Hobby.find_by(id: params[:id])
-    #     @hobby.update(params)
-    #     redirect "/hobbies/#{@hobby.id}"
-    # end
+    patch "/hobbies/:id/edit" do
+        # binding.pry
+        @hobby = Hobby.find_by(id: params[:id])
+        @hobby.update(params[:hobby])
+        redirect "/hobbies/#{@hobby.id}"
+    end
 
     delete "/hobbies/:id" do
         @hobby = Hobby.find_by(id: params[:id])
-        @hobby.items.delete
+        if @hobby.items
+            @hobby.items.delete
+        end
         @hobby.delete
         redirect "/hobbies"
     end

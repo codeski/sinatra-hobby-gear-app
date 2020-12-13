@@ -1,30 +1,30 @@
 class ItemsController < ApplicationController
   
-    get "/item" do
-        erb:"item/index"
+    post "/items" do
+
     end
 
-    get "/item/:id" do
+    
+    get "/items/:id" do
 
     end
   
-    get "/item/new" do
+    get "/items/new" do
 
     end
 
-    post "/item" do
+
+
+    get "/items/:id/edit" do
 
     end
 
-    get "/item/:id/edit" do
+    patch "/items/:id" do
 
     end
 
-    patch "/item/:id" do
-
-    end
-
-    delete "/item/:id" do
+    delete "/items/:id" do
+        item = Item.find_by(id: params[:id])
 
     end
   
