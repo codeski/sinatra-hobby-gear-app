@@ -4,19 +4,22 @@
     <ul><% @hobby.items.each do |item| %>
             <li>Item: <%= item.name %>, Year: <%= item.year %>, Company: <%= item.company %></a>, 
             <% if logged_in? && @hobby.user == current_user %>
-                <a href="/items/<%= item.id %>/edit">Edit Item</a>, <a href="/items/<%= item.id %>/delete">Delete Item</a></li><br>
+                <a href="/items/<%= item.id %>/edit">Edit Item</a> <a href="/items/<%= item.id %>/delete">Delete Item</a></li><br>
             <% end %>
         <% end %></ul>
     <% end %>
 
 <% if logged_in? && @hobby.user == current_user %>
     <form action="/items" method="post">
-        <input type="text" name="name" placeholder="Name"
-    
+        <input type="text" name="name" placeholder="Name"></input>
+        <input type="text" name="year" placeholder="Year"></input>
+        <input type="text" name="name" placeholder="Company"></input>
+        <input type="submit" value="Create Item"></input>
     </form>
-    <a href="/items/new Create item
-
-
-<a href="Add item
-<a href="/hobbies/delete">Delete Hobby</a>
+    <br>
+    <a href="/hobbies/delete">Delete Hobby</a>
+<% end %><br>
+<a href="/hobbies">Back to all hobbies</a>
+<br><br>
 <a href="/logout">Log Out</a>
+
