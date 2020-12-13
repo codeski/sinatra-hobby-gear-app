@@ -4,7 +4,7 @@
     <ul><% @hobby.items.each do |item| %>
             <li>Item: <%= item.name %>, Year: <%= item.year %>, Company: <%= item.company %></a>
             <% if logged_in? && @hobby.user == current_user %>
-                <a href="/items/<%= item.id %>/edit">Edit Item</a> <a href="/items/<%= item.id %>/delete">Delete Item</a></li><br>
+                <a href="/items/<%= item.id %>/edit">Edit Item</a> <a href="/items/<%= item.id %>">Delete Item</a></li><br>
             <% end %>
         <% end %></ul>
     <% end %>

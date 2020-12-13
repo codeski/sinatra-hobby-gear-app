@@ -1,7 +1,8 @@
 <h1>Edit Item</h1>
-<form action="/hobbies/<%= item.hobby %>" method="post">
+<form action="/items/<%= @item.id %>" method="post">
     <input type="hidden" name="_method" value="patch"></input>
-    <input type="text" name="item[name]" value="<%= item.name %>"></input>
-    <input type="text" name="item[year]" value="<%= item.year %>"></input>
-    <input type="text" name="item[company]" value="<%= item.company %>"></input>
+    <input type="text" name="item[name]" value="<%= @item.name %>"></input>
+    <input type="text" name="item[year]" value="<%= @item.year %>"></input>
+    <input type="text" name="item[company]" value="<%= @item.company %>"></input>
+    <input type="submit" value="Edit Item"></input>
 </form>
