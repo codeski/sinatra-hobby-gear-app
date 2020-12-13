@@ -42,10 +42,11 @@ class HobbiesController < ApplicationController
     #     redirect "/hobbies/#{@hobby.id}"
     # end
 
-    # delete "/hobbies/:id" do
-    #     @hobby = Hobby.find_by(id: params[:id])
-    #     @hobby.delete
-    #     redirect "/hobbies/#{@hobby.id}
-    # end
+    delete "/hobbies/:id" do
+        @hobby = Hobby.find_by(id: params[:id])
+        @hobby.items.delete
+        @hobby.delete
+        redirect "/hobbies"
+    end
 
 end
