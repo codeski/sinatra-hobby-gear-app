@@ -7,16 +7,12 @@ class ItemsController < ApplicationController
         erb :'hobby/show'
     end
 
-    
-    get "/items/:id" do
+    get "/items/:id" do 
+        @item = Item.find_by(id: params[:id])
+        @hobby = Hobby.find_by(id: @item.hobby_id)
 
+        erb :'hobby/show'
     end
-  
-    get "/items/new" do
-
-    end
-
-
 
     get "/items/:id/edit" do
         @item = Item.find_by(id: params[:id])
@@ -26,9 +22,10 @@ class ItemsController < ApplicationController
     patch "/items/:id" do
         @item = Item.find_by(id: params[:id])
         @item.update(params[:item])
-        @hobby = Hobby.find_by(id: @item.hobby_id)
+        # @hobby = Hobby.find_by(id: @item.hobby_id)
 
-        erb :'hobby/show'
+        # erb :'hobby/show'
+        redirect "/items/#{@item.id}"
     end
 
     delete "/items/:id" do
@@ -37,6 +34,6 @@ class ItemsController < ApplicationController
         @item.delete
 
         erb :'hobby/show'
+        # redirect "/items/#{@item.id}"
     end
-  
   end

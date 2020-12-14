@@ -1,4 +1,10 @@
 <h1>Hobbies</h1>
 <ul><% @hobbies.each do |hobby| %>
     <h3><li><a href='/hobbies/<%= hobby.id %>'><%= hobby.name %></li></h3>
-<% end %></ul>
+<% end %></ul><br><br>
+<% if logged_in? %>
+    <a href="/hobbies/new">Create a Hobby</a><br><br>
+    <a href="/logout">Log Out</a>
+<% else %>
+    <a href="/login">Log In</a>
+<% end %>

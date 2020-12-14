@@ -1,9 +1,11 @@
 <h1>Sign Up</h1>
-<h3><h3 style="color:red;">
+<% if @errors %>
+    <h5><h5 style="color:red;">
     <ul><% @errors.each do |error| %>
-           <li><%= error.flatten %></li>
-        <%end%>
-    </h3>
+           <li><%= error %></li>
+        <%end%></ul>
+    </h5>
+<% end %>
 <form action="/signup" method="post">
     <h3>Name:</h3><input type="text" name="name" placeholder="Name"></input>
     <h3>Email:</h3><input type="email" name="email" placeholder="Email"></input>

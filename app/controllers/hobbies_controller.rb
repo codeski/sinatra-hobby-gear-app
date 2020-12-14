@@ -10,7 +10,6 @@ class HobbiesController < ApplicationController
     end
 
     post "/hobbies" do
-        
         @hobby = Hobby.create(params)
         @hobby.user_id = session[:user_id]
         @hobby.save
@@ -37,7 +36,6 @@ class HobbiesController < ApplicationController
     end
 
     patch "/hobbies/:id/edit" do
-        # binding.pry
         @hobby = Hobby.find_by(id: params[:id])
         @hobby.update(params[:hobby])
         redirect "/hobbies/#{@hobby.id}"
@@ -51,5 +49,4 @@ class HobbiesController < ApplicationController
         @hobby.delete
         redirect "/hobbies"
     end
-
 end
