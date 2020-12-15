@@ -38,8 +38,12 @@ class HobbiesController < ApplicationController
     patch "/hobbies/:id/edit" do
         #protect
         @hobby = Hobby.find_by(id: params[:id])
-        @hobby.update(params[:hobby])
-        redirect "/hobbies/#{@hobby.id}"
+        if @hobby.user == current_user
+            @hobby.update(params[:hobby])
+            redirect "/hobbies/#{@hobby.id}"
+        else
+            redirect "/login"
+        end
     end
 
     delete "/hobbies/:id" do
