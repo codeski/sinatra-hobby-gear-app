@@ -10,11 +10,17 @@ class HobbiesController < ApplicationController
     end
 
     post "/hobbies" do
-        @hobby = Hobby.create(params)
-        @hobby.user_id = session[:user_id] #look at video for better accociation
-        @hobby.save
+        @hobby = Hobby.new(params)
+        if @hobby.save
+            @hobby.user = current_user #look at video for better accociation
+            @hobby.save
         
-        erb :"hobby/show"
+            erb :"hobby/show"
+        else
+            @error = @hobby.errors.full_messages
+            erb :"hobby/show"
+        end
+
     end
 
     get "/hobbies/:id" do
@@ -28,7 +34,7 @@ class HobbiesController < ApplicationController
 
     get "/hobbies/:id/edit" do
         @hobby = Hobby.find_by(id: params[:id])
-        if @hobby.user == current_user
+        if logged_in? && @hobby.user == current_user
             erb :'/hobby/edit'
         else
             redirect '/hobbies'
@@ -38,9 +44,13 @@ class HobbiesController < ApplicationController
     patch "/hobbies/:id/edit" do
         #protect
         @hobby = Hobby.find_by(id: params[:id])
-        if @hobby.user == current_user
-            @hobby.update(params[:hobby])
-            redirect "/hobbies/#{@hobby.id}"
+        if logged_in? && @hobby.user == current_user
+            if @hobby.update(params[:hobby])
+                redirect "/hobbies/#{@hobby.id}"
+            else
+                @error = @hobby.errors.full_message
+                redirect "/hobbies"
+            end
         else
             redirect "/login"
         end
@@ -48,10 +58,14 @@ class HobbiesController < ApplicationController
 
     delete "/hobbies/:id" do
         @hobby = Hobby.find_by(id: params[:id])
-        if @hobby.items
-            @hobby.items.delete
+        if logged_in? && @hobby.user == current_user
+            if @hobby.items
+                @hobby.items.delete
+            end
+            @hobby.delete
+            redirect "/hobbies"
+        else
+            redirect "/login"
         end
-        @hobby.delete
-        redirect "/hobbies"
     end
 end
