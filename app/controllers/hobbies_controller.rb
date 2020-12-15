@@ -11,14 +11,14 @@ class HobbiesController < ApplicationController
 
     post "/hobbies" do
         @hobby = Hobby.new(params)
+        @hobby.user = current_user
         if @hobby.save
-            @hobby.user = current_user #look at video for better accociation
             @hobby.save
         
             erb :"hobby/show"
         else
-            @error = @hobby.errors.full_messages
-            erb :"hobby/show"
+            @error = @hobby.errors.full_messages.first
+            erb :"hobby/new"
         end
 
     end
@@ -45,11 +45,12 @@ class HobbiesController < ApplicationController
         #protect
         @hobby = Hobby.find_by(id: params[:id])
         if logged_in? && @hobby.user == current_user
-            if @hobby.update(params[:hobby])
+            if @hobby.update(params[:hobby]) && !@hobby.errors
+                @hobby.update(params[:hobby])
                 redirect "/hobbies/#{@hobby.id}"
             else
-                @error = @hobby.errors.full_message
-                redirect "/hobbies"
+                @error = @hobby.errors.full_messages
+                erb :"hobby/show"
             end
         else
             redirect "/login"
