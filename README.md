@@ -1,5 +1,5 @@
 # Description
-Sinatra-hobby-gear-app is a Sinatra application for posting, viewing, editing, and deleteing your hobbies and gear accociated with those hobbies.  
+Sinatra-hobby-gear-app is a Sinatra application for posting, viewing, editing, and deleteing hobbies and gear accociated with those hobbies.  
 
 ## Install Instructions
 Copy and paste into your terminal
@@ -8,17 +8,17 @@ git clone git@github.com:codeski/sinatra-hobby-gear-app.git
 bundle install
 shotgun
 ```
-Then copy and paste the link shotgun provides into your browser to play with the app. 
+Then copy and paste the link shotgun provides to play with the app in your browser to play with the app. 
 
 ## Contributors Guide
-Todd Stoneberg
-Madaline Stark - helping me realize where I should refactor my code
-Flatiron School
+- Todd Stoneberg
+- Madaline Stark - helping me realize where I should refactor my code
+- Flatiron School
 
 ## Link to License
 [MIT](https://choosealicense.com/licenses/mit/)
 
-
+## Checklist
 Specs:
 - [x] Use Sinatra to build the app
 - [x] Use ActiveRecord for storing information in a database
