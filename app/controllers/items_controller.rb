@@ -22,7 +22,8 @@ class ItemsController < ApplicationController
     patch "/items/:id" do
         @item = Item.find_by(id: params[:id])
         @item.update(params[:item])
-        # @hobby = Hobby.find_by(id: @item.hobby_id)
+        # @hobby = Hobby.find_by(id: @item.hobby_id) 
+        @item.hobby
 
         # erb :'hobby/show'
         redirect "/items/#{@item.id}"
