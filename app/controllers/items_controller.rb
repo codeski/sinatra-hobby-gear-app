@@ -30,9 +30,9 @@ class ItemsController < ApplicationController
     end
 
     delete "/items/:id" do
-        @item = Item.find_by(id: params[:id])
-        @hobby = @item.hobby
-        @item.delete
+        item = Item.find_by(id: params[:id])
+        @hobby = item.hobby
+        item.delete
 
         erb :'hobby/show'
         # redirect "/items/#{@item.id}"
