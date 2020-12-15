@@ -6,6 +6,7 @@
 
 ##Link to License
 
+
 Specs:
 - [x] Use Sinatra to build the app
 - [x] Use ActiveRecord for storing information in a database
