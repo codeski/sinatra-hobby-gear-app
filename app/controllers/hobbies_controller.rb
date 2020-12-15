@@ -12,7 +12,7 @@ class HobbiesController < ApplicationController
     post "/hobbies" do
         @hobby = Hobby.create(params)
         @hobby.user_id = session[:user_id] #look at video for better accociation
-        if @hobby.save
+        @hobby.save
         
         erb :"hobby/show"
     end
