@@ -8,7 +8,7 @@ git clone git@github.com:codeski/sinatra-hobby-gear-app.git
 bundle install
 shotgun
 ```
-Then copy and paste the link shotgun provides to play with the app in your browser to play with the app. 
+Then copy and paste the link shotgun provides to play with the app in your browser. 
 
 ## Contributors Guide
 - Todd Stoneberg
