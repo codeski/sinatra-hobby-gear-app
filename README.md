@@ -1,10 +1,14 @@
-##Description
+## Description
 
-##Install Instructions
+## Install Instructions
+Copy and paste into your terminal
+```git clone git@github.com:codeski/sinatra-hobby-gear-app.git
+bundle install
+shotgun```
 
-##Contributors Guide
+## Contributors Guide
 
-##Link to License
+## Link to License
 
 
 Specs:
