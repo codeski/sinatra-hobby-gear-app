@@ -19,6 +19,7 @@ class HobbiesController < ApplicationController
             end
         else
             @error = @hobby.errors.full_messages.first
+            
             erb :"hobby/new"
         end
 
@@ -27,6 +28,7 @@ class HobbiesController < ApplicationController
     get "/hobbies/:id" do
         @hobby = Hobby.find_by(id: params[:id])
         if @hobby
+
             erb :'hobby/show'
         else
             redirect "/hobbies"
@@ -36,6 +38,7 @@ class HobbiesController < ApplicationController
     get "/hobbies/:id/edit" do
         @hobby = Hobby.find_by(id: params[:id])
         if logged_in? && @hobby.user == current_user
+
             erb :'/hobby/edit'
         else
             redirect '/hobbies'
@@ -47,6 +50,7 @@ class HobbiesController < ApplicationController
         if logged_in? && @hobby.user == current_user
             if !params[:hobby][:name].empty?
                 @hobby.update(params[:hobby])
+                
                 redirect "/hobbies/#{@hobby.id}"
             else
                 @error = "Name can't be blank"

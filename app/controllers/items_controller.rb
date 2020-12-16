@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
             else
                 @hobby = item.hobby
                 @itemerror = item.errors.full_messages.first
-                # binding.pry
+                
                 erb :'hobby/show'
             end
         else
@@ -39,21 +39,28 @@ class ItemsController < ApplicationController
     end
 
     patch "/items/:id" do
-        item = Item.find_by(id: params[:id])
-        item.update(params[:item])
-        # @hobby = Hobby.find_by(id: @item.hobby_id) 
-        # item.hobby
+        @item = Item.find_by(id: params[:id])
+        if @item.update(params[:item])
+            @item.update(params[:item])
+            @hobby = @item.hobby
 
-        # erb :'hobby/show'
-        redirect "/items/#{item.id}"
+            erb :"hobby/show"
+        else
+            @itemerror = @item.errors.full_messages.first
+
+            erb :"item/edit"
+        end
     end
 
     delete "/items/:id" do
         item = Item.find_by(id: params[:id])
-        @hobby = item.hobby
-        item.delete
-
-        erb :'hobby/show'
-        # redirect "/items/#{@item.id}"
+        if logged_in? && item.hobby.user == current_user
+            @hobby = item.hobby
+            item.delete
+            
+            erb :'hobby/show'
+        else
+            redirect '/hobbies'
+        end
     end
   end

@@ -1,4 +1,5 @@
 <h1>Edit Item</h1>
+<h4><h4 style="color:red;"><%= @itemerror %></h4>
 <form action="/items/<%= @item.id %>" method="post">
     <input type="hidden" name="_method" value="patch"></input>
     <input type="text" name="item[name]" value="<%= @item.name %>"></input>
