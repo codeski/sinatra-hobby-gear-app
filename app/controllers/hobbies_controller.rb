@@ -42,15 +42,14 @@ class HobbiesController < ApplicationController
     end
 
     patch "/hobbies/:id/edit" do
-        #protect
         @hobby = Hobby.find_by(id: params[:id])
         if logged_in? && @hobby.user == current_user
-            if @hobby.update(params[:hobby]) && !@hobby.errors
+            if !params[:hobby][:name].empty?
                 @hobby.update(params[:hobby])
                 redirect "/hobbies/#{@hobby.id}"
             else
-                @error = @hobby.errors.full_messages
-                erb :"hobby/show"
+                @error = "Hobby needs a Name"
+                erb :"hobby/edit"
             end
         else
             redirect "/login"
