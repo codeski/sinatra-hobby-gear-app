@@ -11,11 +11,12 @@ class HobbiesController < ApplicationController
 
     post "/hobbies" do
         @hobby = Hobby.new(params)
-        @hobby.user = current_user
-        if @hobby.save
-            @hobby.save
+        if logged_in? && @hobby.user == current_user
+            if @hobby.save
+                @hobby.save
 
-            erb :"hobby/show"
+                erb :"hobby/show"
+            end
         else
             @error = @hobby.errors.full_messages.first
             erb :"hobby/new"

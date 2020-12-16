@@ -14,8 +14,9 @@
 <% end %>
 
 <% if logged_in? && @hobby.user == current_user %>
+<h4><h4 style="color:red;"><%= @itemerror %></h4>
     <form action="/items" method="post">
-        <input type="text" name="name" placeholder="Name" required></input>
+        <input type="text" name="name" placeholder="Name"></input>
         <input type="text" name="year" placeholder="Year"></input>
         <input type="text" name="company" placeholder="Company"></input>
         <input type="hidden" name="hobby_id" value="<%= @hobby.id %>"></input>

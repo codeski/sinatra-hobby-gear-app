@@ -1,22 +1,41 @@
 class ItemsController < ApplicationController
     
     post "/items" do
-        @item = Item.create(params)
-        @hobby = @item.hobby  
+        item = Item.new(params)
+        if logged_in? && item.hobby.user == current_user
+            if item.save 
+                @hobby = item.hobby  
 
-        erb :'hobby/show'
+                erb :'hobby/show'
+            else
+                @hobby = item.hobby
+                @itemerror = item.errors.full_messages.first
+                # binding.pry
+                erb :'hobby/show'
+            end
+        else
+            redirect '/hobbies'
+        end
     end
 
     get "/items/:id" do 
         @item = Item.find_by(id: params[:id])
-        @hobby = @item.hobby
+        if @item
+            @hobby = @item.hobby
 
-        erb :'hobby/show'
+            erb :'hobby/show'
+        else
+            redirect "/hobbies"
+        end
     end
 
     get "/items/:id/edit" do
         @item = Item.find_by(id: params[:id])
-        erb :'item/edit'
+        if logged_in? && @item.hobby.user == current_user
+            erb :'item/edit'
+        else
+            redirect "/hobbies"
+        end
     end
 
     patch "/items/:id" do
