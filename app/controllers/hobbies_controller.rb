@@ -2,6 +2,7 @@ class HobbiesController < ApplicationController
   
     get "/hobbies" do
         @hobbies = Hobby.all
+
         erb :"hobby/index"
     end
 
@@ -54,6 +55,7 @@ class HobbiesController < ApplicationController
                 redirect "/hobbies/#{@hobby.id}"
             else
                 @error = "Name can't be blank"
+                
                 erb :"hobby/edit"
             end
         else
