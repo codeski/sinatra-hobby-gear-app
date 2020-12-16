@@ -14,7 +14,7 @@ class HobbiesController < ApplicationController
         @hobby.user = current_user
         if @hobby.save
             @hobby.save
-        
+
             erb :"hobby/show"
         else
             @error = @hobby.errors.full_messages.first
@@ -48,7 +48,7 @@ class HobbiesController < ApplicationController
                 @hobby.update(params[:hobby])
                 redirect "/hobbies/#{@hobby.id}"
             else
-                @error = "Hobby needs a Name"
+                @error = "Name can't be blank"
                 erb :"hobby/edit"
             end
         else
@@ -57,12 +57,12 @@ class HobbiesController < ApplicationController
     end
 
     delete "/hobbies/:id" do
-        @hobby = Hobby.find_by(id: params[:id])
-        if logged_in? && @hobby.user == current_user
-            if @hobby.items
-                @hobby.items.delete
+        hobby = Hobby.find_by(id: params[:id])
+        if logged_in? && hobby.user == current_user
+            if hobby.items
+                hobby.items.delete
             end
-            @hobby.delete
+            hobby.delete
             redirect "/hobbies"
         else
             redirect "/login"
