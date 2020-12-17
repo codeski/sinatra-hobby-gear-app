@@ -49,13 +49,12 @@ class HobbiesController < ApplicationController
     patch "/hobbies/:id/edit" do
         @hobby = Hobby.find_by(id: params[:id])
         if logged_in? && @hobby.user == current_user
-            if !params[:hobby][:name].empty?
-                @hobby.update(params[:hobby])
+            if @hobby.update(params[:hobby])
                 
                 redirect "/hobbies/#{@hobby.id}"
             else
-                @error = "Name can't be blank"
-                
+                @error = @hobby.errors.full_messages.first
+
                 erb :"hobby/edit"
             end
         else
@@ -70,6 +69,7 @@ class HobbiesController < ApplicationController
                 hobby.items.delete
             end
             hobby.delete
+
             redirect "/hobbies"
         else
             redirect "/login"

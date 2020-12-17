@@ -42,7 +42,6 @@ class ItemsController < ApplicationController
         @item = Item.find_by(id: params[:id])
         if logged_in? && @item.hobby.user == current_user
             if @item.update(params[:item])
-                @item.update(params[:item])
                 @hobby = @item.hobby
 
                 erb :"hobby/show"
