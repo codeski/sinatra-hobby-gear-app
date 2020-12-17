@@ -1,3 +1,7 @@
+User.destroy_all
+Hobby.destroy_all
+Item.destroy_all
+
 todd = User.create(name: "Todd", email: "todd@todd.com", password: "yo")
 jill = User.create(name: "Jill", email: "jill@jill.com", password: "sup")
 
