@@ -40,15 +40,19 @@ class ItemsController < ApplicationController
 
     patch "/items/:id" do
         @item = Item.find_by(id: params[:id])
-        if @item.update(params[:item])
-            @item.update(params[:item])
-            @hobby = @item.hobby
+        if logged_in? && @item.hobby.user == current_user
+            if @item.update(params[:item])
+                @item.update(params[:item])
+                @hobby = @item.hobby
 
-            erb :"hobby/show"
+                erb :"hobby/show"
+            else
+                @itemerror = @item.errors.full_messages.first
+
+                erb :"item/edit"
+            end
         else
-            @itemerror = @item.errors.full_messages.first
-
-            erb :"item/edit"
+            redirect "/login"
         end
     end
 
