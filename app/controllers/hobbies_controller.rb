@@ -14,7 +14,7 @@ class HobbiesController < ApplicationController
         @hobby = Hobby.new(params)
         if logged_in? && @hobby.user == current_user
             if @hobby.save
-                @hobby.save
+                # @hobby.save
 
                 erb :"hobby/show"
             end

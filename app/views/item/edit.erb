@@ -1,9 +1,14 @@
 <h1>Edit Item</h1>
-<h4><h4 style="color:red;"><%= @itemerror %></h4>
-<form action="/items/<%= @item.id %>" method="post">
-    <input type="hidden" name="_method" value="patch"></input>
-    <input type="text" name="item[name]" value="<%= @item.name %>"></input>
-    <input type="text" name="item[year]" value="<%= @item.year %>"></input>
-    <input type="text" name="item[company]" value="<%= @item.company %>"></input>
-    <input type="submit" value="Edit Item"></input>
-</form>
+<% if logged_in? && @item.hobby.user == current_user %>
+    <h4><h4 style="color:red;"><%= @itemerror %></h4>
+    <form action="/items/<%= @item.id %>" method="post">
+        <input type="hidden" name="_method" value="patch"></input>
+        <input type="text" name="item[name]" value="<%= @item.name %>"></input>
+        <input type="text" name="item[year]" value="<%= @item.year %>"></input>
+        <input type="text" name="item[company]" value="<%= @item.company %>"></input>
+        <input type="submit" value="Edit Item"></input>
+    </form>
+<% else %>
+    <h4>This is not your item!</h4>
+<% end %>
+<a href="/hobbies">Back to all hobbies</a>
