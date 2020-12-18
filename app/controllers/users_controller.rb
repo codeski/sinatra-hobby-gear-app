@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
     get "/signup" do
-        erb :"user/new"
+        if !logged_in?
+            erb :"user/new"
+        else
+            redirect '/hobbies'
+        end
     end
 
     post '/signup' do
