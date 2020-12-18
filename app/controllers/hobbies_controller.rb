@@ -14,7 +14,6 @@ class HobbiesController < ApplicationController
         @hobby = Hobby.new(params)
         if logged_in? && @hobby.user == current_user
             if @hobby.save
-                # @hobby.save
 
                 erb :"hobby/show"
             end
@@ -66,9 +65,9 @@ class HobbiesController < ApplicationController
         hobby = Hobby.find_by(id: params[:id])
         if logged_in? && hobby.user == current_user
             if hobby.items
-                hobby.items.delete
+                hobby.items.destroy
             end
-            hobby.delete
+            hobby.destroy
 
             redirect "/hobbies"
         else
