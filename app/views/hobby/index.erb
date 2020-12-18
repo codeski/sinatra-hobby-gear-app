@@ -1,6 +1,9 @@
 <h1>Hobbies</h1>
+<% if logged_in? %>
+    <h2>Logged in as: <%= current_user.name %></h2>
+<% end %>
 <ul><% @hobbies.each do |hobby| %>
-    <h3><li><a href='/hobbies/<%= hobby.id %>'><%= hobby.name %></li></h3>
+    <h3><li><a href='/hobbies/<%= hobby.id %>'><%= hobby.name %>, <%=hobby.user.name%></li></h3>
 <% end %></ul><br><br>
 <% if logged_in? %>
     <a href="/hobbies/new">Create a Hobby</a><br><br>
