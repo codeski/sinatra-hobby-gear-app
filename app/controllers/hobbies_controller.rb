@@ -7,7 +7,12 @@ class HobbiesController < ApplicationController
     end
 
     get "/hobbies/new" do
-        erb :"hobby/new"
+        if logged_in?
+            
+            erb :"hobby/new"
+        else
+            redirect '/login'
+        end
     end
 
     post "/hobbies" do
