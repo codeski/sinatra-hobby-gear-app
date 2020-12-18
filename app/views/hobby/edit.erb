@@ -1,9 +1,13 @@
 <h1>Edit Hobby</h1>
-<h4><h4 style="color:red;"><%= @error %></h4>
-<form action="/hobbies/<%= @hobby.id %>/edit" method="post">
-    <input type="hidden" name="_method" value="patch"></input>
-    <h3>Name:</h3><input type="text" name="hobby[name]" value="<%= @hobby.name %>"></input>
-    <h3>Season:</h3><input type="text" name="hobby[season]" value="<%= @hobby.season %>"></input>
-    <input type="submit" value="Edit Hobby"></input>
-</form><br><br>
+<% if logged_in? && @hobby.user == current_user %>
+    <h4><h4 style="color:red;"><%= @error %></h4>
+    <form action="/hobbies/<%= @hobby.id %>/edit" method="post">
+        <input type="hidden" name="_method" value="patch"></input>
+        <h3>Name:</h3><input type="text" name="hobby[name]" value="<%= @hobby.name %>"></input>
+        <h3>Season:</h3><input type="text" name="hobby[season]" value="<%= @hobby.season %>"></input>
+        <input type="submit" value="Edit Hobby"></input>
+    </form><br><br>
+<% else %>
+    <h4>This is not your hobby!</h4>
+<% end %>
 <a href="/hobbies">Back to all hobbies</a><br><br>
