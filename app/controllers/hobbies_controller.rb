@@ -21,11 +21,14 @@ class HobbiesController < ApplicationController
             if @hobby.save
 
                 erb :"hobby/show"
+            else
+                @error = @hobby.errors.full_messages.first
+            
+                erb :"hobby/new"
+            
             end
         else
-            @error = @hobby.errors.full_messages.first
-            
-            erb :"hobby/new"
+            redirect "/login"
         end
 
     end
