@@ -5,6 +5,7 @@ Sinatra-hobby-gear-app is a Sinatra application for posting, viewing, editing, a
 Copy and paste into your terminal
 ```
 git clone git@github.com:codeski/sinatra-hobby-gear-app.git
+cd sinatra-hobby-gear-app
 bundle install
 shotgun
 ```
