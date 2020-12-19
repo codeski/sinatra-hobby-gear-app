@@ -25,7 +25,6 @@ class HobbiesController < ApplicationController
                 @error = @hobby.errors.full_messages.first
             
                 erb :"hobby/new"
-            
             end
         else
             redirect "/login"
